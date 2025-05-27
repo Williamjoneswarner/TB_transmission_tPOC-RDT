@@ -4,6 +4,10 @@ Overview
 
 This repository hosts a stochastic, individual-based compartmental model of tuberculosis (TB) transmission and progression, developed to evaluate the potential impact of a novel point-of-care rapid diagnostic test (tPOC-RDT) with enhanced rural diagnostic coverage. The model simulates TB dynamics under two scenarios: (1) baseline conditions reflecting current diagnostic access and delays, and (2) implementation of the tPOC-RDT.
 
+The model utilises custom functions to transition individuals between disease states (compartments) based on calculated probabilities. It follows a stepwise method that mirrors the natural history of TB progression, with transitions repeated iteratively over the entire simulation period (in this case, 10 years). At each time step, transition probabilities are dynamically computed based on the group counts from the previous step, allowing the model to capture changes in the population structure over time.
+
+This implementation predominantly uses base R, featuring original R code developed specifically for this project.
+
 Model Description
 
 The model is implemented in R and structured around seven compartments representing key states in TB infection and care:
