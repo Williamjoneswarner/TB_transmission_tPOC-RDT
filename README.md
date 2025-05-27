@@ -54,3 +54,5 @@ Validation and tuning of input parameters using empirical data
 Disaggregation of rates by age, gender, and urban vs rural context
 Separation of composite flows (e.g., disentangling mortality, relapse, and birth from the current recidivism rate)
 Extension to include diagnostic delay stratified by setting and population
+
+This repositary contains 3 files; two coding files that contain baseline and theoretical parameters along with a powerpoint walk through. 
