@@ -1,4 +1,4 @@
-# TB_transmission_tPOC-RDT
+TB_transmission_tPOC-RDT
 
 Overview
 
@@ -30,33 +30,44 @@ Diagnosed → Treated
 Treated → Recovered
 Recovered → Susceptible via loss of immunity or relapse
 Exit/re-entry via mortality and birth modeled as a composite re-entry (recidivism) rate
+Parameter Stratification
+Recent model developments have incorporated age- and gender-specific progression rates, reflecting evidence that TB exposure and disease progression vary significantly across demographic groups. Additionally, the model now includes differential diagnostic coverage and delay parameters for rural and urban populations, addressing previous limitations of homogeneous diagnostic assumptions. This adjustment is critical given the differing healthcare access and diagnostic reach in these settings, especially considering the tPOC-RDT’s focus on rural implementation.
+
 Use Case
 
-specifically below;
-#' - inf.prob:         Probability of transmission per contact
-#' - act.rate:         Number of contacts per person per time step
-#' - piu.rate:         Rate of progression from latent to early infectious (E → P)
-#' - delay.rate:       Rate of progression from preclinical to clinical TB (P → I)
-#' - p_diag_coverage:  Proportion of individuals in the preclinical stage (P) eligible for diagnosis
-#' - p_diag_rate:      Probability of diagnosis among eligible individuals in the preclinical stage (P → D)
-#' - i_diag_coverage:  Proportion of individuals in the clinical stage (I) eligible for diagnosis
-#' - i_diag_rate:      Probability of diagnosis among eligible individuals in the clinical stage (I → D)
-#' - treat.rate:       Probability of treatment uptake once diagnosed (D → T)
-#' - rec.rate:         Rate of recovery following treatment (T → R)
-#' - recid.rate:       Rate of relapse or TB-related death, balanced by replacement into susceptible pool (R → S)
+The key model parameters include, but are not limited to:
 
+Parameter	Description
+inf.prob	Probability of transmission per contact
+act.rate	Number of contacts per person per time step
+piu.rateaX	Age-specific progression rates from latent to early infectious (E → P)
+delay.rate	Rate of progression from preclinical to clinical TB (P → I)
+p_diag_rural_coverage	Proportion of rural preclinical individuals eligible for diagnosis
+p_diag_urban_coverage	Proportion of urban preclinical individuals eligible for diagnosis
+p_diag_rate	Probability of diagnosis among eligible preclinical individuals (P → D)
+i_diag_rural_coverage	Proportion of rural infectious individuals eligible for diagnosis
+i_diag_urban_coverage	Proportion of urban infectious individuals eligible for diagnosis
+i_diag_rate	Probability of diagnosis among eligible infectious individuals (I → D)
+treat.rate	Probability of treatment uptake once diagnosed (D → T)
+rec.rate	Rate of recovery following treatment (T → R)
+recid.rate	Rate of relapse or TB-related death, balanced by replacement into susceptible pool (R → S)
 This model was created to compare baseline conditions to a theoretical implementation of a heat-stable, finger-prick tPOC-RDT with approximately 75–80% sensitivity and 95% specificity. Its major benefit is increased diagnostic coverage, particularly in rural populations with limited access to standard TB diagnostics.
 
 Geographic Context
-The model parameters and assumptions are loosely based on epidemiological patterns in the Amazonian region of Brazil, with rural/urban disparities reflected in future model versions.
+
+The model parameters and assumptions are loosely based on epidemiological patterns in the Amazonian region of Brazil, with rural/urban disparities explicitly incorporated in diagnostic coverage and delay parameters.
 
 Development Status
 
 🚧 This model is under active development.
+
 Key next steps include:
-Validation and tuning of input parameters using empirical data
-Disaggregation of rates by age, gender, and urban vs rural context
+
+Validation and tuning of input parameters using empirical epidemiological and field data
+Further disaggregation of disease progression and transmission parameters by age, gender, and geographic setting
 Separation of composite flows (e.g., disentangling mortality, relapse, and birth from the current recidivism rate)
 Extension to include diagnostic delay stratified by setting and population
+Incorporation of spatially explicit node-based transmission models using GPS coordinates to capture fine-scale geographic heterogeneity and contact structures
+Repository Contents
 
-This repositary contains 3 files; two coding files that contain baseline and theoretical parameters along with a powerpoint walk through. 
+This repository contains three files: two R scripts with baseline and theoretical parameter sets, and a PowerPoint walkthrough explaining the model structure and usage.
